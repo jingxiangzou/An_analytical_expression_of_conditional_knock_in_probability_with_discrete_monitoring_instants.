@@ -52,19 +52,67 @@ if __name__ == '__main__':
     # volatility duration num_instants s0 s1 KI
     print('test 1')
     print(' duration =', test1.T, "years\n", 'num of instants =', test1.m)
-    print('our analytical approximation is ', test1.ana_appro())
-    print('simulation result(num of paths is 50000) :', test1.mc_sim(50000))
-    print('simlation result(num of paths is 50000):', test1.mc_sim(50000))
-    print('simlation result(num of paths is 100000):', test1.mc_sim(100000))
+    t1_ana = test1.ana_appro()
+    print('our analytical approximation is ', t1_ana)
+    s11 = test1.mc_sim(100000)
+    s12 = test1.mc_sim(100000)
+    s13 = test1.mc_sim(100000)
+    s14 = test1.mc_sim(100000)
+    s15 = test1.mc_sim(100000)
+    print('simulation result(num of paths is 100000):', s11)
+    print('simulation result(num of paths is 100000):', s12)
+    print('simulation result(num of paths is 100000):', s13)
+    print('simulation result(num of paths is 100000):', s14)
+    print('simulation result(num of paths is 100000):', s15)
+
+    print(round(t1_ana, 8))
+    print(round((s11 + s12 + s13 + s14 + s15)/5, 8))
+    print(round(t1_ana - (s11 + s12 + s13 + s14 + s15)/5, 8))
 
     test2 = testclass(0.1, 0.1, 200, 100, 100, 95)
     # volatility duration num_instants s0 s1 KI
     print('test 2')
     print(' duration =', test2.T, "years\n", 'num of instants =', test2.m)
-    print('our analytical approximation is ', test2.ana_appro())
-    print('simulation result(num of paths is 50000) :', test2.mc_sim(50000))
-    print('simlation result(num of paths is 50000):', test2.mc_sim(50000))
-    print('simlation result(num of paths is 100000):', test2.mc_sim(100000))
+    t2_ana = test2.ana_appro()
+    print('our analytical approximation is ', t2_ana)
+    s21 = test2.mc_sim(100000)
+    s22 = test2.mc_sim(100000)
+    s23 = test2.mc_sim(100000)
+    s24 = test2.mc_sim(100000)
+    s25 = test2.mc_sim(100000)
+    print('simulation result(num of paths is 100000):', s21)
+    print('simulation result(num of paths is 100000):', s22)
+    print('simulation result(num of paths is 100000):', s23)
+    print('simulation result(num of paths is 100000):', s24)
+    print('simulation result(num of paths is 100000):', s25)
+
+    print(round(t2_ana, 8))
+    print(round((s21 + s22 + s23 + s24 + s25)/5, 8))
+    print(round(t2_ana - (s21 + s22 + s23 + s24 + s25)/5, 8))
+
+    test3 = testclass(0.1, 0.1, 50, 100, 100, 95)
+    # volatility duration num_instants s0 s1 KI
+    print('test 3')
+    print(' duration =', test3.T, "years\n", 'num of instants =', test3.m)
+    t3_ana = test3.ana_appro()
+    print('our analytical approximation is ', t3_ana)
+    s31 = test3.mc_sim(100000)
+    s32 = test3.mc_sim(100000)
+    s33 = test3.mc_sim(100000)
+    s34 = test3.mc_sim(100000)
+    s35 = test3.mc_sim(100000)
+    print('simulation result(num of paths is 100000):', s31)
+    print('simulation result(num of paths is 100000):', s32)
+    print('simulation result(num of paths is 100000):', s33)
+    print('simulation result(num of paths is 100000):', s34)
+    print('simulation result(num of paths is 100000):', s35)
+
+    print(round(t3_ana, 8))
+    print(round((s31 + s32 + s33 + s34 + s35)/5, 8))
+    print(round(t3_ana - (s21 + s22 + s23 + s24 + s25)/5, 8))
+
+
+
 
 
 
