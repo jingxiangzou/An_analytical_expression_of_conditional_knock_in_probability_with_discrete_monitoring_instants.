@@ -1,0 +1,71 @@
+import numpy as np
+import pandas as pd
+import random
+import scipy as sp
+
+
+class testclass:
+    def __init__(self, sigma, duration, instants, s0, s1, ki):
+        """
+        :param sigma: volatility
+        :param duration: duration, T
+        :param instants: number of monitoring instants
+        :param s0: starting price
+        :param s1: ending price
+        """
+        self.sig = sigma
+        self.T = duration
+        self.m = instants
+        self.s0 = s0
+        self.s1 = s1
+        self.ki = ki
+
+    def ana_appro(self):
+        beta = 0.5826
+        adj_ki = self.ki * np.exp(-1 * beta * self.sig * np.sqrt(self.T/self.m))
+        return np.exp((-2.0)/ (self.T * self.sig * self.sig) * np.log(adj_ki / self.s0) * np.log(adj_ki / self.s1))
+
+    def mc_sim(self, nsim):
+        count = 0
+        for isim in range(nsim):
+            a = np.random.normal(0, self.sig * np.sqrt(self.T/self.m), self.m)
+            b = [0] * (self.m + 1)
+
+            for i in range(self.m):
+                b[i+1] = a[i] + b[i] # b is the BM
+            c = [0] * (self.m + 1)
+
+            for j in range(self.m + 1):
+                c[j] = b[j] - (j / self.m) * b[-1] # the brownian bridge
+
+            dd = [np.log(self.s1 / self.s0) * (ii / self.m) for ii in range(self.m + 1)]
+            d = np.add(c, dd)
+            e = [self.s0 * np.exp(d[jj]) for jj in range(self.m + 1)]
+            if min(e) < self.ki:
+                count += 1
+
+        return (1.0000000 * count) / nsim
+
+
+if __name__ == '__main__':
+    test1 = testclass(0.1, 0.1, 100, 100, 100, 95)
+    # volatility duration num_instants s0 s1 KI
+    print('test 1')
+    print(' duration =', test1.T, "years\n", 'num of instants =', test1.m)
+    print('our analytical approximation is ', test1.ana_appro())
+    print('simulation result(num of paths is 50000) :', test1.mc_sim(50000))
+    print('simlation result(num of paths is 50000):', test1.mc_sim(50000))
+    print('simlation result(num of paths is 100000):', test1.mc_sim(100000))
+
+    test2 = testclass(0.1, 0.1, 200, 100, 100, 95)
+    # volatility duration num_instants s0 s1 KI
+    print('test 2')
+    print(' duration =', test2.T, "years\n", 'num of instants =', test2.m)
+    print('our analytical approximation is ', test2.ana_appro())
+    print('simulation result(num of paths is 50000) :', test2.mc_sim(50000))
+    print('simlation result(num of paths is 50000):', test2.mc_sim(50000))
+    print('simlation result(num of paths is 100000):', test2.mc_sim(100000))
+
+
+
+
