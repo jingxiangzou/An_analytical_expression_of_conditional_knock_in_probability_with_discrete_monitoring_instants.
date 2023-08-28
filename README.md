@@ -1,2 +1,3 @@
-# star_trek_math
-On the topic of star trek file related math problems
+# An analytical expression of knock-in probability under discrete monitoring
+The question is as follows:
+
