@@ -9,9 +9,8 @@ The following is my idea
 
 I am first enlightened by the Theorem 10.3 from Sheldon Ross's Book \textit{Introduction to probability models}
 which states that for 
-\[
-M(t) = \max\limits_{0\leq y \leq t} X(y)
-\]
+$M(t) = \max\limits_{0\leq y \leq t} X(y)$
+
 where $X(y)$ follows Brownian Motion. For $ y > x $ the conditional distribution of $M(t)$ should satisfy 
 \begin{equation}
 P(M(t) \ge y | X(t) = x) = e^{-2y (y-x) / {t\sigma ^2}}
